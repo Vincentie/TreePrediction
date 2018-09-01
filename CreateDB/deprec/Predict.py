@@ -11,13 +11,13 @@ import tushare as ts
 
 #设置参数 并爬取黄金每日数据+黄金每日舆情数据 放入数据库中
 #用于训练的数据
-BeginDate = '2012-01-01'
-EndDate = '2017-01-01'
-SaveUrl1 = 'FData.sqlite'
-SaveUrl2 = 'Sentiments.sqlite'
+BeginDate = '2016-11-01'
+EndDate = '2017-05-12'
+SaveUrl1 = 'CreateDB/Data/FData_Pre.sqlite'
+SaveUrl2 = 'CreateDB/Data/Sentiments_Pre.sqlite'
 
-#MarketDataFromSHFE.CreateDB(BeginDate, EndDate, SaveUrl1)
-#SentimentsFromSina.CreateDB(BeginDate, EndDate, SaveUrl2)
+MarketDataFromSHFE.CreateDB(BeginDate, EndDate, SaveUrl1)
+SentimentsFromSina.CreateDB(BeginDate, EndDate, SaveUrl2)
 
 #GetTDays与TryDate是为获取一个time horizon里的所有交易日列表的函数
 #如: GetTDays('2017-04-01','2017-04-10')-->['2017-04-05', '2017-04-06', '2017-04-07']
@@ -76,7 +76,7 @@ for date in GetTDays(BeginDate, EndDate):
     avgdata.setdefault(key,values)	
 
 #将以上字典输入数据库-得到黄金期货的每日数据指标
-conna=sqlite3.connect('FAvgData.sqlite')
+conna=sqlite3.connect('FAvgData_Pre.sqlite')
 cursor=conna.cursor()
 SQLquery1="create table if not exists SHFEAvg(date datetime, Close numeric(15,2), High numeric(15,2), Low numeric(15,2),\
                 Change2 numeric(15,2), ChangeofOpenInt numeric(25,2), Volume numeric(15,2), Sentiment numeric(15,2) )"
