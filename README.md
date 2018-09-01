@@ -14,10 +14,10 @@
 
   2. Data Processing  
     We process trading data and sentiments separately.  
-    * Trading data (like HOLC)  
+      * Trading data (like HOLC)  
   	    We compute their volume weighted average number for future use.  
 
-    * Sentimental contexts  
+  	  * Sentimental contexts  
   	    We use third-party NLP processing package to perform words partitioning and sentiments grading to serve as emotions and sentiments status of that day.  
 
   3. Prediction  
